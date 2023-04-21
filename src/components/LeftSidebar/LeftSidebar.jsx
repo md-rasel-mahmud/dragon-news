@@ -6,10 +6,10 @@ import { NavLink } from 'react-router-dom';
 
 const LeftSidebar = () => {
 
-    const [categories, setCategories] = useState([])
-    const [error, setError] = useState([])
-    
-    useEffect(()=>{
+    const [categories, setCategories] = useState([]);
+    const [error, setError] = useState([]);
+
+    useEffect(() => {
         const categoriesData = async () => {
             const response = await fetch('http://localhost:4000/categories');
 
@@ -21,17 +21,16 @@ const LeftSidebar = () => {
             }
             const data = await response.json();
             setCategories(data)
-            
+
             return data;
         }
-        
+
         categoriesData().catch(e => {
             setCategories([])
             setError(e.message)
         })
-    },[])
+    }, [])
 
-    
     return (
         <ListGroup className='gap-1'>
             {
@@ -39,17 +38,21 @@ const LeftSidebar = () => {
             }
             {
                 categories.map(category => {
-                    return <NavLink key={category.id} className={`text-decoration-none ${({ isActive }) => isActive ? 'bg-danger' : 'empty'}`}
-                        to={category.name.toLowerCase().split(' ').join('-')}
+                    return <NavLink
+                        key={category.id}
+                        to={`/category/${category.id}`}
+                        className={({ isActive }) =>
+                            isActive ?
+                                'bg-black bg-opacity-10 text-black fw-semibold text-decoration-none rounded p-2'
+                                :
+                                'text-decoration-none rounded text-black p-2'}
                     >
-                        <ListGroup.Item className='rounded' action
-                            variant="light">
-                            {category.name}
-                        </ListGroup.Item>
+
+                        {category.name}
                     </NavLink>
                 })
             }
-        </ListGroup>
+        </ListGroup >
     );
 };
 
