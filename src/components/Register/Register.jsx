@@ -2,11 +2,14 @@ import React, { useContext, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import Navigation from '../Header/Navigation';
 import { AuthContext } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
     const [error, setError] = useState('')
 
     const {registerWithEmailPass} = useContext(AuthContext)
+
+    const navigate = useNavigate()
 
     const handleSubmit = event => {
         event.preventDefault()
@@ -32,7 +35,7 @@ const Register = () => {
         })
         .catch(error => console.log(error))
 
-        console.log(email, password, confirmPass, error);
+        navigate('/')
     }
 
     return (
