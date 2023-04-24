@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import Navigation from '../Header/Navigation';
+import { AuthContext } from '../../context/AuthContext';
 
 const Register = () => {
     const [error, setError] = useState('')
+
+    const {registerWithEmailPass} = useContext(AuthContext)
 
     const handleSubmit = event => {
         event.preventDefault()
@@ -21,6 +24,13 @@ const Register = () => {
             setError('Password should be more then 6 character')
             return
         }
+
+        registerWithEmailPass(email, password)
+        .then( (result) => {
+            const user = result.user;
+            console.log(user);
+        })
+        .catch(error => console.log(error))
 
         console.log(email, password, confirmPass, error);
     }

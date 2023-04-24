@@ -1,9 +1,31 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Navigation from '../Header/Navigation';
+import { AuthContext } from '../../context/AuthContext';
 
 const Login = () => {
+    const {loginWithEmailPass} = useContext(AuthContext)
+
+    const navigate = useNavigate()
+
+    const handleLogin = (event) => {
+        event.preventDefault()
+        const form = event.target;
+
+        const email = form.email.value;
+        const password = form.password.value;
+
+        loginWithEmailPass(email, password)
+        .then((result) => {
+            const user = result.user;
+            console.log(user);
+        })
+        .catch(error => console.log(error.message))
+
+        navigate('/')
+    }
+
     return (
         <div className='mt-4'>
             <Navigation/>
@@ -13,15 +35,15 @@ const Login = () => {
 
                 <hr className='mb-4' />
 
-                <Form>
+                <Form onSubmit={handleLogin}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
-                        <Form.Control className='border-0 py-2' type="email" placeholder="Enter email" />
+                        <Form.Control className='border-0 py-2' name='email' type="email" placeholder="Enter email" />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Label>Password</Form.Label>
-                        <Form.Control className='border-0 py-2' type="password" placeholder="Password" />
+                        <Form.Control className='border-0 py-2' name='password' type="password" placeholder="Password" />
                     </Form.Group>
                     <div className="d-grid">
                         <Button className='my-3' variant="secondary" type="submit">

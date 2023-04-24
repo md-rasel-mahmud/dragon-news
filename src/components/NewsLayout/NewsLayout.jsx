@@ -6,9 +6,8 @@ import RightSidebar from '../RightSidebar/RightSidebar';
 import QZone from '../QZone/QZone';
 import Header from '../Header/Header';
 import Navigation from '../Header/Navigation';
-import LeftSidebar from '../LeftSidebar/LeftSidebar';
 
-const Home = () => {
+const NewsLayout = () => {
     return (
         <>
             <Header />
@@ -17,12 +16,9 @@ const Home = () => {
             <Container className='mt-4'>
                 <Row>
                     <Col>
-                        <LeftSidebar/>
-                    </Col>
-                    <Col xs={6}>
                         <Outlet/>
                     </Col>
-                    <Col>
+                    <Col xs={3}>
                         <RightSidebar />
                         <QZone />
                     </Col>
@@ -32,4 +28,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default NewsLayout;
