@@ -30,15 +30,15 @@ const Navigation = () => {
                         navbarScroll
                     >
                         <Link to='/' className='ms-lg-5 text-hover ps-lg-5 text-decoration-none text-secondary'>Home</Link>
-                        <Link to='about' className='text-decoration-none text-hover text-secondary'>About</Link>
-                        <Link to='career' className='text-decoration-none text-hover text-secondary'>Career</Link>
+                        <Link to='/about' className='text-decoration-none text-hover text-secondary'>About</Link>
+                        <Link to='/career' className='text-decoration-none text-hover text-secondary'>Career</Link>
 
                     </Nav>
                     <div className="d-flex align-items-center gap-2">
-                        <FaUserCircle className='fs-2' />
                         {
                             user ?
                                 <>
+                                    <FaUserCircle className='fs-2' />
                                     <h6 className='m-0'>{user.email}</h6>
 
                                     <Button onClick={handleLogout} variant="secondary" className='rounded-0 px-4'>Logout</Button>

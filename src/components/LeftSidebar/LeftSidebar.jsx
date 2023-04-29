@@ -11,7 +11,7 @@ const LeftSidebar = () => {
 
     useEffect(() => {
         const categoriesData = async () => {
-            const response = await fetch('http://localhost:4000/categories');
+            const response = await fetch('https://backend-one-beta.vercel.app/categories');
 
             setError('')
 
