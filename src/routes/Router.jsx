@@ -6,12 +6,15 @@ import Main from "../components/Main/Main";
 import NewsCategory from "../components/NewsCategory/NewsCategory";
 import NewsDetails from "../components/NewsLayout/NewsDetails";
 import NewsLayout from "../components/NewsLayout/NewsLayout";
+import About from "../components/About/About";
+import ErrorPage from "../components/error/ErrorPage";
 
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <Home/>,
+        errorElement: <ErrorPage/>,
         children: [
             {
                 path: '/',
@@ -43,6 +46,10 @@ const router = createBrowserRouter([
     {
         path: '/register',
         element: <Register/>
+    },
+    {
+        path: '/about',
+        element: <About/>
     },
 ])
 
