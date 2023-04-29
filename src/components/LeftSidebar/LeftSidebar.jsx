@@ -32,7 +32,7 @@ const LeftSidebar = () => {
     }, [])
 
     return (
-        <ListGroup className='gap-1'>
+        <ListGroup className='gap-1 sticky-top'>
             {
                 error && <p className='text-danger'>{error}</p>
             }
