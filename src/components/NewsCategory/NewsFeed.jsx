@@ -28,9 +28,9 @@ const NewsFeed = ({ news }) => {
                 <Card.Title>{title}</Card.Title>
                 <Card.Text className='mb-0 text-secondary'>
                     <small>
-                        {details.slice(0, 200)}
-                    </small>
-                    <Link to={`/news/${_id}`} className='text-warning p-0 ps-2 fw-semibold'>Read More...</Link>
+                        {details.slice(0, 200)}...
+                    </small> <br />
+                    <Link to={`/news/${_id}`} className='text-warning p-0 fw-semibold'>Read More</Link>
                 </Card.Text>
             </Card.Body>
             <Card.Footer className="text-muted d-flex border-light">

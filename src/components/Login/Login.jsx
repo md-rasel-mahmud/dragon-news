@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Navigation from '../Header/Navigation';
 import { AuthContext } from '../../context/AuthContext';
 
@@ -8,6 +8,8 @@ const Login = () => {
     const {loginWithEmailPass} = useContext(AuthContext)
 
     const navigate = useNavigate()
+    const location = useLocation()
+    const from = location.state?.from?.pathname || '/';
 
     const handleLogin = (event) => {
         event.preventDefault()
@@ -20,10 +22,9 @@ const Login = () => {
         .then((result) => {
             const user = result.user;
             console.log(user);
+            navigate(from)
         })
         .catch(error => console.log(error.message))
-
-        navigate('/')
     }
 
     return (
