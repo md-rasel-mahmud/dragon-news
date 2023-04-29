@@ -1,11 +1,13 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Navigation from '../Header/Navigation';
 import { AuthContext } from '../../context/AuthContext';
 
 const Login = () => {
-    const {loginWithEmailPass} = useContext(AuthContext)
+    const [error, setError] = useState('')
+
+    const { loginWithEmailPass } = useContext(AuthContext)
 
     const navigate = useNavigate()
     const location = useLocation()
@@ -18,19 +20,21 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
 
+        setError('')
+
         loginWithEmailPass(email, password)
-        .then((result) => {
-            const user = result.user;
-            console.log(user);
-            navigate(from)
-        })
-        .catch(error => console.log(error.message))
+            .then((result) => {
+                const user = result.user;
+                console.log(user);
+                navigate(from)
+            })
+            .catch(error => setError(error.message))
     }
 
     return (
         <div className='mt-4'>
-            <Navigation/>
-            <div className='w-50 mx-auto mt-5 p-5 bg-secondary bg-opacity-25 rounded'>
+            <Navigation />
+            <div className='w-75 mx-auto mt-5 p-5 bg-secondary bg-opacity-25 rounded'>
 
                 <h3 className='text-center mb-4'>Login your account</h3>
 
@@ -46,6 +50,9 @@ const Login = () => {
                         <Form.Label>Password</Form.Label>
                         <Form.Control className='border-0 py-2' name='password' type="password" placeholder="Password" />
                     </Form.Group>
+                        {
+                            error && <p className="text-danger">{error}</p>
+                        }
                     <div className="d-grid">
                         <Button className='my-3' variant="secondary" type="submit">
                             Submit

@@ -33,8 +33,8 @@ const Register = () => {
             const user = result.user;
             console.log(user);
         })
-        .catch(error => console.log(error))
-
+        .catch(error => setError(error))
+        
         navigate('/')
     }
 
@@ -42,7 +42,7 @@ const Register = () => {
         <div className='my-4'>
             <Navigation />
 
-            <div className='w-50 mx-auto mt-5 p-5 bg-secondary bg-opacity-25 rounded'>
+            <div className='w-75 mx-auto mt-5 p-5 bg-secondary bg-opacity-25 rounded'>
 
                 <h3 className='text-center mb-4'>Register your account</h3>
 
